@@ -33,7 +33,7 @@ fi
 OIFS=IFS
 IFS=":"
 echo "Select a directory to place symlink(s):"
-select linkdir in $PATH; do
+select linkdir in $PATH </dev/tty; do
 	break;
 done
 IFS=$OIFS
