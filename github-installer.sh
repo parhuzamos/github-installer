@@ -3,7 +3,7 @@ defdir="/opt";
 app="${1}";
 
 function ask_continue() {
-	read -p  "Continue? [y/n] " -n 1 -s response
+	read -p  "Continue? [y/n] " -n 1 -s response </dev/tty
 	if [ ! "${response}" = "y" ]; then
 		echo "${response}"
 		echo
@@ -16,7 +16,7 @@ function ask_continue() {
 
 echo "Installing ${app}..."
 echo
-read -p "Select a directory to install to (a subdirectory will be created here): [${defdir}] " ${installdir}
+read -e -p "Select a directory to install to (a subdirectory will be created here): [${defdir}] " -i "${defdir}" ${installdir} </dev/tty
 if [ "${installdir}" = "" ]; then
 	installdir="${defdir}";
 fi
