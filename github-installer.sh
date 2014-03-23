@@ -1,6 +1,5 @@
 #!/bin/bash
-#rm ~/bin/apps/adblogga -rf
-defdir=~/bin/apps
+defdir=/opt
 app=${1}
 
 function ask_continue() {
@@ -24,12 +23,11 @@ fi
 installdir=$(realpath ${installdir})/${app}
 echo -e "\n$app will be installed to \"${installdir}\""
 ask_continue
-#git clone https://github.com/parhuzamos/${app}.git ${installdir}
-#exitcode=$?
-exitcode=0
+git clone https://github.com/parhuzamos/${app}.git ${installdir}
+exitcode=$?
 if [ ! "${exitcode}" = "0" ]; then
 	echo
-	echo "Program error. Exiting."
+	echo "Program error (${exitcode}). Exiting."
 	exit ${exitcode}
 fi
 OIFS=IFS
@@ -66,10 +64,10 @@ for executable in ${executables}; do
 	echo "Link ${executable} -> ${linkdir}/${filename}"
 	ln -s ${executable} ${linkdir}/${filename}
 done
+IFS=$OIFS
 uninstall=${installdir}/uninstall.sh
 echo "#!/bin/bash" >${uninstall}
 echo "rm -rf ${installdir}" >>${uninstall}
-IFS=$OIFS
 OIFS=IFS
 IFS=":"
 for executable in ${executables}; do
@@ -81,7 +79,7 @@ IFS=$OIFS
 chmod +x ${uninstall}
 echo
 echo "Installation successfull."
-echo "To uninstall just execute this: "
+echo "To uninstall execute the just created \"uninstall.sh\": "
 echo "    ${uninstall}"
 echo
 echo "Done."
