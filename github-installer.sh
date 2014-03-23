@@ -33,9 +33,9 @@ fi
 OIFS=IFS
 IFS=":"
 echo "Select a directory to place symlink(s):"
-select linkdir in $PATH </dev/tty; do
+select linkdir in $PATH; do
 	break;
-done
+done </dev/tty
 IFS=$OIFS
 if [ "${linkdir}" = "" ]; then
 	echo "User abort. Exiting."
