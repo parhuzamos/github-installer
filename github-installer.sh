@@ -1,6 +1,6 @@
 #!/bin/bash
-defdir=/opt
-app=${1}
+defdir="/opt";
+app="${1}";
 
 function ask_continue() {
 	read -p  "Continue? [y/n] " -n 1 -s response
@@ -18,7 +18,7 @@ echo "Installing ${app}..."
 echo
 read -p "Select a directory to install to (a subdirectory will be created here): [${defdir}] " ${installdir}
 if [ "${installdir}" = "" ]; then
-	installdir=${defdir}
+	installdir="${defdir}";
 fi
 installdir=$(realpath ${installdir})/${app}
 echo -e "\n$app will be installed to \"${installdir}\""
