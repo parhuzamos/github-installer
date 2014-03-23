@@ -32,6 +32,7 @@ if [ ! "${exitcode}" = "0" ]; then
 fi
 OIFS=IFS
 IFS=":"
+echo
 echo "Select a directory to place symlink(s):"
 select linkdir in $PATH; do
 	break;
@@ -77,6 +78,7 @@ for executable in ${executables}; do
 done;
 IFS=$OIFS
 chmod +x ${uninstall}
+echo
 echo
 echo "Installation successfull."
 echo "To uninstall execute the just created \"uninstall.sh\": "
