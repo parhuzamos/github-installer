@@ -41,7 +41,7 @@ if [ "${linkdir}" = "" ]; then
 	echo "User abort. Exiting."
 	exit 1;
 fi
-lindir=$(realpath $linkdir)
+linkdir=$(realpath $linkdir)
 executables=""
 count=0
 for file in ${installdir}/*; do
