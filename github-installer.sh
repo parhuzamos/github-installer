@@ -16,7 +16,7 @@ function ask_continue() {
 
 echo "Installing ${app}..."
 echo
-read -e -p "Select a directory to install to (a subdirectory will be created here): [${defdir}] " -i "${defdir}" ${installdir} </dev/tty
+read -e -p "Select a directory to install to (a subdirectory will be created here): [${defdir}] " -i "${defdir}" installdir </dev/tty
 if [ "${installdir}" = "" ]; then
 	installdir="${defdir}";
 fi
